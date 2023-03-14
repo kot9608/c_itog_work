@@ -27,25 +27,33 @@ string[] InTextArray = GetArrayFromString(elements);
 
 string[] GetArrayThree(string stringArray)
 { 
-  int Len=2;
+  int Len=4;
   int LenThreeArray = 0;
   string[] StringText = stringArray.Split(" ", System.StringSplitOptions.RemoveEmptyEntries);
-  for (int i = 0; i < stringArray.Length; i++)
-  {
-    if (stringArray[i] > Len)
-    LenThreeArray++;
-  }
-  string[] Three = new string[LenThreeArray];
-
   for (int i = 0; i < StringText.Length; i++)
   {
-    if (StringText[i].Length > Len)
-    Three[i]=(StringText[i]);
+    if (StringText[i].Length < Len)
+    LenThreeArray=LenThreeArray+1;
+  }
+  ;
+
+  string[] Three = new string[LenThreeArray];
+
+//Console.WriteLine(LenThreeArray); //если раскомментировать строку - она выводится два раза - не понимаю, почему
+int j=0;//переменная для вставки в массив
+  for (int i = 0; i < StringText.Length; i++)
+  {
+    if (StringText[i].Length < Len)
+    {
+      Three[j]=(StringText[i]);
+      j++;
+    }
+    
   }
   return Three;
-}
+};
 
-string[] ThreePlus = GetArrayThree(elements);
+string[] StringText = GetArrayThree(elements);
 
 
-Console.WriteLine($"3+ элементов {String.Join(" , ", GetArrayThree(elements))}");//вывод на экран элементы массива
+Console.WriteLine($"<3 элементов {String.Join(" , ", GetArrayThree(elements))}");//вывод на экран элементы массива
